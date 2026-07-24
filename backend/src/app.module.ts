@@ -11,6 +11,7 @@ import { accessTokenStrategy } from './auth/jwt-auth/jwt-auth-access.strategy';
 import { refreshTokenStrategy } from './auth/jwt-auth/jwt-auth-refresh.strategy';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/jwt-auth/jwt-auth.guard';
+import { ProfileModule } from './profile/profile.module';
 
 @Module({
   imports: [
@@ -23,7 +24,8 @@ import { JwtAuthGuard } from './auth/jwt-auth/jwt-auth.guard';
       envFilePath: ['.env.local', '.env']
     }),
     PassportModule,
-    JwtModule.register({})
+    JwtModule.register({}),
+    ProfileModule
   ],
   controllers: [AppController],
   providers: [

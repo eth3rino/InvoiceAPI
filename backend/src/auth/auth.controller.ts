@@ -4,6 +4,8 @@ import { Public } from '../decorators/public.decorator';
 import { CurrentUser } from '../decorators/current-user.decorator';
 import { RefreshTokenGuard } from './refresh-token/refresh-token.guard';
 import type { UserPayload } from '../types/user-payload.interface';
+import { UserSignupDto } from './dto/user-signup.dto';
+import { UserLoginDto } from './dto/user-login.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -11,14 +13,14 @@ export class AuthController {
 
     @Public()
     @Post('signup')
-    async userSignup(@Body() signupData) {
+    async userSignup(@Body() signupData: UserSignupDto) {
         return await this.authService.signup(signupData);
     }
 
     @Public()
     @Post('login')
     @HttpCode(HttpStatus.OK)
-    async userLogin(@Body() loginData) {
+    async userLogin(@Body() loginData: UserLoginDto) {
         return await this.authService.login(loginData);
     }
 
