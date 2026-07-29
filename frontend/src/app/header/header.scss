@@ -1,0 +1,41 @@
+.header {
+    .nav {
+        height: 6rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        // padding-bottom: 2em;
+        position: relative;
+
+        border-bottom: 1px solid var(--clr-muted);
+        
+
+
+        .nav-home{
+            height: 30%;
+            margin-left: 2em;
+            .home-image {height: 100%;}
+        }
+
+        .nav-toggle {
+            margin-right: 2em;
+            border: none;
+            height: 3em;
+            width: 3em;
+            background: none;
+            svg {
+                width: inherit;
+                height: inherit;
+            }
+        }
+
+        .nav-links {
+            position: fixed;
+            inset: 0;
+
+            .link {}
+            .separator {}
+
+        }
+    }
+}

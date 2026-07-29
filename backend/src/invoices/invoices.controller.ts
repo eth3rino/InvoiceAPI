@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Header, Param, Patch, Post, Query, Res } from '@nestjs/common';
 import { CreateInvoiceDto } from './dto/create-invoice.dto';
 import { InvoicesService } from './invoices.service';
 import { UpdateInvoiceDto } from './dto/update-invoice.dto';
@@ -6,6 +6,7 @@ import { UpdateInvoiceStatusDto } from './dto/update-invoice-status.dto';
 import { CurrentUser } from '../decorators/current-user.decorator';
 import { ListInvoicesOptions } from './dto/list-invoices.options';
 import type { UserPayload } from '../types/user-payload.interface';
+import type { Response } from 'express';
 
 @Controller('invoices')
 export class InvoicesController {
@@ -28,9 +29,13 @@ export class InvoicesController {
         return await this.invoicesService.getInvoiceById(user.id, invoiceId);
     }
 
-    @Get(':id/pdf')
-    async getInvoicePdfById(@CurrentUser() user: UserPayload, @Param('id') invoiceId: string) {
-        return await this.invoicesService.getInvoicePdfById(user.id, invoiceId);
+    @Get(':id/download')
+    async getInvoicePdfById(@CurrentUser() user: UserPayload, @Param('id') invoiceId: string, @Res() res: Response) {
+        const {pdfBuffer, invoiceNumber } = await this.invoicesService.getInvoicePdfById(user.id, invoiceId);
+
+        res.type('application/pdf');
+        res.setHeader('Content-Disposition', `attachment; filename="invoice-${invoiceNumber}.pdf"`);
+        res.send(pdfBuffer)
     }
 
     @Patch(':id') 

@@ -12,6 +12,11 @@ model User {
     passwordHash     String   @map("password_hash")
     displayName      String   @map("display_name")
     companyName      String?  @map("company_name")
+    contactEmail     String?  @map("contact_email")
+
+    logoUrl          String?  @map("logo_url")
+    brandColor       String?  @default("#000000") @map("brand_color")
+    templateId       String?  @default("classic") @map("template_id")
 
     cuit             String?
     address          String?

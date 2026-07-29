@@ -9,6 +9,19 @@ export class UserUpdateProfileDto {
     @IsString()
     @IsOptional()
     readonly companyName?: string;
+    @IsString()
+    @IsOptional()
+    readonly contactEmail?: string;
+
+    @IsString()
+    @IsOptional()
+    readonly logoUrl?: string;
+    @IsString()
+    @IsOptional()
+    readonly brandColor?: string;
+    @IsString()
+    @IsOptional()
+    readonly templateId?: string;
 
     @IsString()
     @IsOptional()

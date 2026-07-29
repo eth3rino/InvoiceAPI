@@ -1,0 +1,27 @@
+<header class="header">
+    <nav class="nav">
+        <a href="" class="nav-home">
+            <img src="g78.png" alt="" class="home-image">
+        </a>
+
+        <button class="nav-toggle"
+                (click)="toggleNav()">
+            <svg lucideMenu></svg>
+        </button>
+
+        @if (isNavOpen()) {
+            <div class="nav-links" (click)="toggleNav()">
+                <button class="nav-toggle">
+                    <svg lucideX></svg>
+                </button>
+                <a href="" class="link">Pricing</a>
+                <div class="separator"></div>
+                <a href="" class="link">How it works</a>
+                <div class="separator"></div>
+                <a href="" class="link">API docs</a>
+                <div class="separator"></div>
+                <a href="" class="link">Dashboard</a>
+            </div>
+        }
+    </nav>
+</header>

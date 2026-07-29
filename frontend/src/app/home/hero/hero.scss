@@ -1,0 +1,48 @@
+.hero {
+    font-size: 1rem;
+    font-family: 'Rajdhani';
+    
+    display: flex;
+    gap: 1em;
+    flex-direction: column;
+
+    padding: 2em 0;
+    
+
+    .hero-title {
+        font-family: 'Barlow Condensed';
+        font-weight: 700;
+        font-size: 2.5em;
+        text-transform: uppercase;
+        line-height: 1em;
+    }
+
+    .hero-caption {
+        font-size: 1em;
+        font-weight: 600;
+        color: var(--clr-subtext);
+    }
+
+    .hero-cta-buttons {
+        display: flex;
+        gap: 1em;
+        .btn {
+            text-transform: uppercase;
+            padding: .5em .9em;
+            border: none;
+            background: none;
+            border-radius: .6em;
+
+            &.primary {
+                font-weight: 700;
+                color: white;
+                background-color: var(--clr-accent);
+            }
+            &.secondary {
+                border: 1px solid var(--clr-muted);
+                font-weight: 500;
+                color: var(--clr-subtext);
+            }
+        }
+    }
+}

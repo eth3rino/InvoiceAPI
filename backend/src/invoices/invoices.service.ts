@@ -6,10 +6,12 @@ import { Invoice } from '@prisma/client';
 import { UpdateInvoiceDto } from './dto/update-invoice.dto';
 import { UpdateInvoiceStatusDto } from './dto/update-invoice-status.dto';
 import { ListInvoicesOptions } from './dto/list-invoices.options';
+import { PdfService } from '../pdf/pdf.service';
+import { InvoicePayload } from '../types/invoice-payload.interface';
 
 @Injectable()
 export class InvoicesService {
-    constructor(private db: PrismaService) {}
+    constructor(private db: PrismaService, private pdf: PdfService) {}
 
     async createInvoice(userId: string, invoice: CreateInvoiceDto) {
         const user = await this.checkUserExists(userId)
@@ -125,20 +127,46 @@ export class InvoicesService {
         return invoice;
     }
 
+    async getInvoicePdfById(userId: string, invoiceId: string) {
+        const invoice = await this.db.invoice.findFirst({
+            where: {id: invoiceId, userId, deleted: false},
+            include: {
+                lineItems: true,
+                user: {
+                    select: {
+                        displayName: true,
+                        companyName: true,
+                        contactEmail: true,
+                        cuit: true,
+                        address: true,
+                        city: true,
+                        province: true,
+                        postalCode: true,
+                        logoUrl: true
+                    }
+                }
+            }
+        });
+        if (!invoice) throw new NotFoundException('Invoice not found')
+
+        const pdfBuffer = await this.pdf.generateInvoicePdf(userId, invoice)
+        const invoiceNumber = invoice.invoiceNumber
+        return {pdfBuffer, invoiceNumber};
+    }
 
     // ======================================================
     //                  HAVE TO COMPLETE
     // ======================================================
     
-    async getInvoicePdfById(userId: string, invoiceId: string) {
-        const invoicePdf = await this.db.invoicePdf.findFirst({
-            where: {invoiceId, userId}
-        });
+    // async getInvoicePdfById(userId: string, invoiceId: string) {
+    //     const invoicePdf = await this.db.invoicePdf.findFirst({
+    //         where: {invoiceId, userId}
+    //     });
 
-        if (!invoicePdf) throw new NotFoundException('Invoice PDF not found.');
+    //     if (!invoicePdf) throw new NotFoundException('Invoice PDF not found.');
 
-        return 
-    }
+    //     return 
+    // }
 
 
     async updateInvoiceData(userId: string, invoiceId: string, updateData: UpdateInvoiceDto) {

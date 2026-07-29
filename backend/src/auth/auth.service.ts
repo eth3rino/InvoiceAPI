@@ -1,9 +1,9 @@
 import { ConflictException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { JwtService } from '@nestjs/jwt';
-import { userSignupDto } from './dto/user-signup.dto';
+import { UserSignupDto } from './dto/user-signup.dto';
 import { ConfigService } from '@nestjs/config';
-import { userLoginDto } from './dto/user-login.dto';
+import { UserLoginDto } from './dto/user-login.dto';
 
 import * as bcrypt from 'bcrypt'
 
@@ -16,7 +16,7 @@ export class AuthService {
         private config: ConfigService
     ) {}
 
-    async login(loginData: userLoginDto) {
+    async login(loginData: UserLoginDto) {
 
         // Same exception to not leak which emails are registered
         const user = await this.db.user.findUnique({where: {email: loginData.email}});
@@ -28,13 +28,49 @@ export class AuthService {
         return {...tokens, user: {id: user.id, email: user.email, displayName: user.displayName}}
     }
 
-    async signup(signupData: userSignupDto) {
-        const {email, passwd, displayName} = signupData
+    async signup(signupData: UserSignupDto) {
+        const {
+            passwd, 
+            email,
+            displayName, 
+            companyName, 
+            contactEmail, 
+            logoUrl, 
+            brandColor, 
+            templateId, 
+            cuit, 
+            address, 
+            city, 
+            province, 
+            postalCode, 
+            defaultCurrency, 
+            timezone
+        } = signupData
+
+
         this.checkIfUserExists(email)
 
         const passwordHash = await this.hashPassword(passwd);
+        const signupPayload = {
+            email: email,
+            passwordHash,
+            displayName: displayName,
+            ...(companyName && {companyName}),
+            ...(contactEmail && {contactEmail}),
+            ...(logoUrl && {logoUrl}),
+            ...(brandColor && {brandColor}),
+            ...(templateId && {templateId}),
+            ...(cuit && {cuit}),
+            ...(address && {address}), 
+            ...(city && {city}),
+            ...(province && {province}),
+            ...(postalCode && {postalCode}),
+            ...(defaultCurrency && {defaultCurrency}),
+            ...(timezone && {timezone}),
+        }
+
         const user = await this.db.user.create({
-            data: {email, passwordHash, displayName}
+            data: signupPayload
         })
 
         const tokens = await this.signTokens(user.id, user.email);
