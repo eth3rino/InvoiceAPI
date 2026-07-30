@@ -1,0 +1,23 @@
+.freelance-reference {
+
+    .freelance-reference-title {}
+    .freelance-reference-caption {}
+
+    .separator {}
+
+    .freelance-grid-block {
+        .freelance-column {
+
+            &.left {
+
+                .freelance-column-title {}
+                .freelance-column-caption {}
+                .freelance-column-cta {}
+            }
+            &.right {
+
+                .freelance-column-image {}
+            }
+        }
+    }
+}

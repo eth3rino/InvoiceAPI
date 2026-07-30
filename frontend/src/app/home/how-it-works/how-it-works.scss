@@ -1,0 +1,82 @@
+.how-it-works {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3em;
+
+    font-size: 1rem;
+    font-family: 'Rajdhani';
+
+    position: relative;
+    .how-title {
+        font-family: "Barlow Condensed";
+        text-transform: uppercase;
+        font-size: 1.7em;
+        text-align: center;
+    }
+
+    .steps-container {
+        display: grid;
+        gap: 3em;
+        .step {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            // align-items: center;
+
+            .step-header {
+                display: flex;
+                align-items: center;
+                gap: 2em;
+                
+                .step-number {
+                    font-size: 2.5em;
+                    font-weight: 700;
+                    font-family: 'Barlow Condensed';
+                    position: relative;
+                    isolation: isolate;
+                    color: white;
+
+                    &::before {
+                        position: absolute;
+                        content: '';
+                        height: 1.5em;
+                        width: 1.5em;
+                        border-radius: 100%;
+                        background-color: var(--clr-accent);
+                        z-index: -1;
+                        left: 50%;
+                        top: 50%;
+                        translate: -48% -45%;
+                    }
+                }
+                .step-text {
+                    display: grid;
+                    
+                    .step-title {font-weight: 700; font-size: 1.2em;}
+                    .step-caption {color: var(--clr-subtext);}
+                }
+            }
+            .step-image {
+                width: 100%;
+            }
+        }
+    }
+
+    .how-end-title {
+        font-size: 2.5em;
+        text-transform: uppercase;
+        text-align: center;
+    }
+    .how-it-works-cta {
+        border: none;
+        background-color: var(--clr-accent);
+        color: white;
+        text-transform: uppercase;
+        font-size: 1.5em;
+        font-weight: 700;
+        padding: .4em 1em;
+        border-radius: .5em;
+        letter-spacing: 1px;
+    }
+}
