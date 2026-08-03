@@ -1,22 +1,90 @@
 .freelance-reference {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    
+    font-size: 1rem;
+    font-family: 'Rajdhani';
 
-    .freelance-reference-title {}
-    .freelance-reference-caption {}
+    position: relative;
 
-    .separator {}
+    .freelance-reference-title {
+        font-weight: 700;
+        font-family: 'Barlow Condensed';
+        font-size: 2.5em;
+        text-transform: uppercase;
+        text-align: center;
+        line-height: 1em;
+    }
+    .freelance-reference-caption {
+        text-align: center;
+        color: var(--clr-subtext);
+    }
+
+    .separator {
+        height: 1px;
+        width: 4em;
+        background-color: var(--clr-muted);
+    }
 
     .freelance-grid-block {
+        display: grid;
+        gap: 1em;
         .freelance-column {
 
             &.left {
+                order: 1;
+                display: flex;
+                flex-direction: column;
+                gap: .5em;
 
-                .freelance-column-title {}
-                .freelance-column-caption {}
-                .freelance-column-cta {}
+                .freelance-column-title {
+                    font-size: 1.5em;
+                }
+                .freelance-column-caption {
+                    color: var(--clr-subtext);
+                }
+                .freelance-column-cta {
+                    font-size: 1.3em;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    padding: .5em;
+                    border: none;
+                    background-color: var(--clr-accent);
+                    color: white;
+                    border-radius: .5em;
+                }
             }
             &.right {
 
-                .freelance-column-image {}
+                .freelance-column-image {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+
+@media screen and (min-width: 700px) {
+    .freelance-reference {
+        .freelance-grid-block {
+            grid-template-columns: 1fr 1fr;
+            .freelance-column.left {
+                order: unset;
+                gap: .5em;
+                .freelance-column-title {
+                    padding-bottom: .5em;
+                }
+                .freelance-column-caption {
+                    font-weight: 600;
+                }
+                .freelance-column-cta {
+                    margin-top: 1em;
+
+                }
             }
         }
     }

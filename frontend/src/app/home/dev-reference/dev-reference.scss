@@ -1,0 +1,54 @@
+.dev-reference {
+    font-size: 1rem;
+    font-family: 'Rajdhani';
+
+    display: flex;
+    flex-direction: column;
+    gap:.2em ;
+
+    position: relative;
+    
+    .dev-reference-title {
+        font-family: 'Barlow Condensed';
+        font-weight: 700;
+        font-size: 2em;
+
+        text-transform: uppercase;
+        margin-bottom: .2em;
+    }
+    .dev-reference-caption {
+        color: var(--clr-subtext);
+    }
+
+    .dev-code-snippet {
+        // margin-top: 1em;
+        img {width: 100%;}
+    }
+
+    .code-snippet-hint {font-size: .9em; color: var(--clr-muted);}
+    .dev-reference-buttons {
+        margin-top: 1em;
+        display: flex;
+        gap: .5em;
+
+        .dev-reference-cta {
+            padding: .4em 1em;
+            border-radius: .5em;
+
+            text-transform: uppercase;
+            letter-spacing: 1px;
+
+            &.primary-button {
+                border: none;
+                background-color: var(--clr-accent);
+                font-weight: 700;
+                color: white;
+            }
+            &.secondary-button {
+                color: var(--clr-subtext);
+                font-weight: 500;
+                border: 1px solid var(--clr-muted);
+            }
+        }
+    }
+}

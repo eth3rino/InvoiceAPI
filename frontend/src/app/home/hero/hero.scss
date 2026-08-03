@@ -6,7 +6,7 @@
     gap: 1em;
     flex-direction: column;
 
-    padding: 2em 0;
+    // padding: 2em 0;
     
 
     .hero-title {
@@ -32,6 +32,7 @@
             border: none;
             background: none;
             border-radius: .6em;
+            font-size: 1em;
 
             &.primary {
                 font-weight: 700;
@@ -43,6 +44,19 @@
                 font-weight: 500;
                 color: var(--clr-subtext);
             }
+        }
+    }
+}
+
+
+
+@media screen and (min-width: 700px) {
+    .hero {
+        .hero-title {
+            font-size: 3em;
+        }
+        .hero-caption {
+            font-size: 1.2em;
         }
     }
 }

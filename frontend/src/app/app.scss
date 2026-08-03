@@ -1,0 +1,9 @@
+:host {
+    display: flex;
+    justify-content: center;
+}
+.app-wrapper {
+    max-width: 50em;
+    border-right: 1px solid var(--clr-muted);
+    border-left: 1px solid var(--clr-muted);
+}

@@ -61,3 +61,40 @@
         }
     }
 }
+
+
+@media screen and (min-width: 700px) {
+    .security {
+        .security-items {
+            grid-template-columns: 1fr 1fr 1fr;
+            padding: 0;
+            gap: 0;
+            place-items: center;
+            
+            .row-item {
+                font-size: 1.1em;
+                font-weight: 400;
+                text-align: center;
+                padding: 1em;
+                width: 100%;
+                // height: 100%;
+                
+                &:not(:last-child) {
+                    border-right: 1px solid var(--clr-muted);
+                }
+
+                &::before {content: unset;}
+            }
+        }
+
+        .security-bottom {
+            .bottom-text {
+                font-size: 1.3em;
+            }
+            h3.bottom-text {
+                font-size: 1.7em;
+                max-width: unset;
+            }
+        }
+    }
+}

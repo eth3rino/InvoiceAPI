@@ -51,8 +51,9 @@
                     }
                 }
                 .step-text {
-                    display: grid;
-                    
+                    display: flex;                    
+                    flex-direction: column;
+
                     .step-title {font-weight: 700; font-size: 1.2em;}
                     .step-caption {color: var(--clr-subtext);}
                 }
@@ -78,5 +79,35 @@
         padding: .4em 1em;
         border-radius: .5em;
         letter-spacing: 1px;
+    }
+}
+
+
+@media screen and (min-width: 700px) {
+    .how-it-works {
+        padding: 0 4em;
+        .how-title {font-size: 2.5em;}
+
+        .steps-container {
+            .step {
+                .step-header {
+                    .step-text {
+                        flex-direction: row;
+                        align-items: end;
+                        gap: 1em;
+                        
+                        .step-title {font-size: 2em;}
+                        .step-caption {
+                            font-size: 1em;
+                            font-weight: 600;   
+                            padding-bottom: .3em;
+
+                        }
+                    }
+                }
+            }
+            
+            
+        }
     }
 }

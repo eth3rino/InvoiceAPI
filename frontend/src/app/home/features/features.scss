@@ -32,3 +32,25 @@
         }
     }
 }
+
+
+@media screen and (min-width: 700px) {
+    .features {
+        grid-template-columns: 1fr 1fr 1fr;
+
+        .feature {
+            border: none;
+            flex-direction: column;
+            border-radius: unset;
+            padding: 1  em;
+            &:not(:last-child) {
+                border-right: 1px solid var(--clr-muted);
+            }
+
+            .feature-text {
+                text-align: center; 
+                max-width: unset;
+            }
+        }
+    }
+}
